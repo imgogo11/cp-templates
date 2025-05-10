@@ -9,8 +9,7 @@ int getnum(char x) {
 } 
 void insert(string &str) {
     int p=0,len=str.size();
-    for(int i=0;i<len;i++)
-    {
+    for(int i=0;i<len;i++) {
         int c=getnum(str[i]);
         if(!t[p][c])
             t[p][c]=++idx;
@@ -20,8 +19,7 @@ void insert(string &str) {
 }
 int find(string &str) {
     int p=0,len=str.size();
-    for(int i=0;i<len;i++)
-    {
+    for(int i=0;i<len;i++) {
         int c=getnum(str[i]);
         if(!t[p][c])
             return 0;

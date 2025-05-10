@@ -39,6 +39,7 @@
         "syncstream": "cpp",
         "thread": "cpp",
         "functional": "cpp",
-        "variant": "cpp"
+        "variant": "cpp",
+        "random": "cpp"
     }
 }
