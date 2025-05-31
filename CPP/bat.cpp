@@ -6,8 +6,7 @@ freopen("input","r",stdin);
 freopen("out","w",stdout);
 //A__Generator.cpp
 mt19937_64 rng{chrono::steady_clock::now().time_since_epoch().count()};
-ll range(ll l,ll r)
-{return rng()%(r+1-l)+l;}
+ll range(ll l,ll r) {return rng()%(r+1-l)+l;}
 freopen("input","w",stdout);
 //A__Bat.cpp
 int t=100;
