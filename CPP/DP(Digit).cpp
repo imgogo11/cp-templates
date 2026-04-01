@@ -14,7 +14,7 @@ ll dfs(int pos, int limit, int sum) {
     ll ans = 0;
     if (!pos) return sum;
     auto &d = dp[pos][sum];
-    if (!limit && d != -1) return d;// 多组样例可复用记搜
+    if (!limit && d != -1) return d;  // 多组样例可复用记搜
     for (ll u = 0; u <= (limit ? S[pos] : 9); u++)
         ans += dfs(pos - 1, limit && u == S[pos], sum + u);
     ans %= mod;
@@ -30,7 +30,7 @@ ll F(ll x) {
     }
     return dfs(cnt, true, 0);
 }
-void solve() {// 求[l,r]所有数位和
+void solve() {  // 求[l,r]所有数位和
     memset(dp, -1, sizeof(dp));
     cin >> l >> r;
     ll ans1 = F(r);

@@ -1,13 +1,13 @@
 struct ACAM {
     static constexpr int ALPHABET = 26;
     struct Node {
-        int len,link;
+        int len, link;
         array<int, ALPHABET> next;
         Node() : len{}, link{}, next{} {}
     };
     vector<Node> t;
-    vector<int> nodes,end;
-    ACAM() {init();}
+    vector<int> nodes, end;
+    ACAM() { init(); }
     void init() {
         t.assign(2, Node());
         nodes.clear();
@@ -50,24 +50,24 @@ struct ACAM {
         }
     }
     vector<int> query(const string &s) {
-        int p=1;
-        vector<int> f(t.size()+1);
-        for(auto c: s) {
-            p=t[p].next[c-'a'];
-            f[p]+=1;
+        int p = 1;
+        vector<int> f(t.size() + 1);
+        for (auto c : s) {
+            p = t[p].next[c - 'a'];
+            f[p] += 1;
         }
-        for(int i=nodes.size()-1;i>=0;i--) {
-            int x=nodes[i];
-            f[t[x].link]+=f[x];
+        for (int i = nodes.size() - 1; i >= 0; i--) {
+            int x = nodes[i];
+            f[t[x].link] += f[x];
         }
         vector<int> cnt(end.size());
-        for(int i=0;i<end.size();i++)
-            cnt[i]=f[end[i]];
+        for (int i = 0; i < end.size(); i++)
+            cnt[i] = f[end[i]];
         return cnt;
     }
-    int next(int p,int x) {return t[p].next[x];}
-    int link(int p) {return t[p].link;}
-    int len(int p) {return t[p].len;}
-    int size() {return t.size();}
-    int number() {return end.size();}
+    int next(int p, int x) { return t[p].next[x]; }
+    int link(int p) { return t[p].link; }
+    int len(int p) { return t[p].len; }
+    int size() { return t.size(); }
+    int number() { return end.size(); }
 };

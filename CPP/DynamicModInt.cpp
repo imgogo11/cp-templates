@@ -1,6 +1,6 @@
-template<class T>
+template <class T>
 constexpr T power(T a, i64 b) {
-    T res {1};
+    T res{1};
     for (; b; b /= 2, a *= a) {
         if (b % 2) {
             res *= a;
@@ -17,12 +17,12 @@ constexpr i64 mul(i64 a, i64 b, i64 p) {
     }
     return res;
 }
-template<i64 P>
+template <i64 P>
 struct MLong {
     i64 x;
     constexpr MLong() : x{} {}
     constexpr MLong(i64 x) : x{norm(x % getMod())} {}
-    
+
     static i64 Mod;
     constexpr static i64 getMod() {
         if (P > 0) {
@@ -102,18 +102,18 @@ struct MLong {
     friend constexpr std::ostream &operator<<(std::ostream &os, const MLong &a) {
         return os << a.val();
     }
-    friend constexpr auto operator<=>(const MLong&, const MLong&) = default;
+    friend constexpr auto operator<=>(const MLong &, const MLong &) = default;
 };
 
-template<>
+template <>
 i64 MLong<0LL>::Mod = i64(1E18) + 9;
 
-template<int P>
+template <int P>
 struct MInt {
     int x;
     constexpr MInt() : x{} {}
     constexpr MInt(i64 x) : x{norm(x % getMod())} {}
-    
+
     static int Mod;
     constexpr static int getMod() {
         if (P > 0) {
@@ -196,15 +196,14 @@ struct MInt {
     friend constexpr bool operator==(MInt lhs, MInt rhs) {
         return lhs.val() == rhs.val();
     }
-    friend constexpr auto operator<=>(const MInt&, const MInt&) = default;
+    friend constexpr auto operator<=>(const MInt &, const MInt &) = default;
 };
 
-template<>
+template <>
 int MInt<0>::Mod = 998244353;
 
-template<int V, int P>
+template <int V, int P>
 constexpr MInt<P> CInv = MInt<P>(V).inv();
-
 
 using Z = MInt<998244353>;
 using Z1 = MInt<0>;

@@ -18,7 +18,7 @@ struct Splaytree {
         pushup(x);
         if (!guard) root = x;
     }
-    int join(int x, int y) { // assum that keys in x < keys in y
+    int join(int x, int y) {  // assum that keys in x < keys in y
         if (!x || !y) return x | y;
         while (ch[x][1]) x = ch[x][1];
         splay(x, 0);
@@ -46,7 +46,7 @@ struct Splaytree {
         fa[node_tot] = y, val[node_tot] = v, cnt[node_tot] = 1;
         splay(node_tot, 0);
     }
-    void del(int v) { // assume that v is in the tree
+    void del(int v) {  // assume that v is in the tree
         int x = root;
         while (val[x] != v) x = ch[x][v > val[x]];
         --siz[x];
@@ -80,7 +80,7 @@ struct Splaytree {
         splay(y, 0);
         return ans;
     }
-    int kth(int k) { // k must > 0 and <= the size of the tree
+    int kth(int k) {  // k must > 0 and <= the size of the tree
         int x = root;
         while (k <= siz[ch[x][0]] || k > siz[ch[x][0]] + cnt[x]) {
             if (k <= siz[ch[x][0]]) {
