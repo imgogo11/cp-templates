@@ -1,2 +1,2 @@
 # Template
-XCPC Algorithm Template ------------------ gogo11
+XCPC Algorithm Template ------------------ GoGo11

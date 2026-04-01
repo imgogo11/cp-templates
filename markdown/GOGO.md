@@ -386,10 +386,17 @@ $$
 f(x)=f(0)+f'(0)x+\frac{f''(0)}{2!}x^2+\cdots+\frac{f^{(n)}(0)}{n!}x^n+o(x^n) \\
 \\
 \sin(x)=x-\frac{x^3}{3!}+\frac{x^5}{5!}+...,x \in (-\infty,+\infty) \\
+\arcsin(x)=x+\frac{x^3}{6}+\frac{3x^5}{40}+\frac{5x^7}{112}+\frac{35x^9}{1152}+...,x \in (-1,1) \\
 \cos(x)=1-\frac{x^2}{2!}+\frac{x^4}{4!}-\frac{x^6}{6!}+...,x \in (-\infty,+\infty) \\
+\arccos(x)=\frac{\pi}{2}-\arcsin(x),x \in (-1,1) \\
 \tan(x)=x+\frac{x^3}{3}+\frac{2x^5}{15}+\frac{17x^7}{315}+\frac{62x^9}{2835}+...,x \in (-\frac{\pi}{2},\frac{\pi}{2}) \\
+\arctan(x)=x-\frac{x^3}{3}+\frac{x^5}{5}+...,x \in [-1,1] \\
+arccot(x)=\frac{\pi}{2}-\arctan(x),x \in (-\infty,+\infty) \\
+\sec(x)=1+\frac{x^2}{2}+\frac{5x^4}{24}+...,x \in (-\frac{\pi}{2},\frac{\pi}{2}) \\
 e^x=1+x+\frac{x^2}{2!}+\frac{x^3}{3!}+...,x \in (-\infty,+\infty) \\
 \ln(1+x)=x-\frac{x^2}{2}+\frac{x^3}{3}+...,x \in (-1,1] \\
+\frac{1}{1-x}=1+x+x^2+x^3+...,x \in (-1,1) \\
+\frac{1}{1+x}=1-x+x^2-x^3+...,x \in (-1,1) \\
 (1+x)^\alpha=1+\alpha x+\frac{\alpha (\alpha-1)}{2!}x^2+\frac{\alpha(\alpha-1)(\alpha-2)}{3!}x^3+...,x \in (-1,1) \\
 $$
 
@@ -1071,9 +1078,7 @@ for(int i=0;i<=n;i++) {
 
 ### Dijkstra
 
-不能求有负权
-
-![graph](D:\Template\graph.png)
+不能求有负权![graph](Assets/graph.png)
 理论结果:0 3 1 1      实际结果:0 3 1 2
 复杂度$O(mlogm)$
 
@@ -1449,8 +1454,7 @@ struct Fenwick
 ```c++
 mt19937 rng{chrono::steady_clock::now().time_since_epoch().count()};
 int root,T1,T2,T3,cnt;
-struct FHQ
-{
+struct FHQ {
     struct Node {
         int ls,rs,key,sz,val;
     };
@@ -4539,8 +4543,7 @@ $=\frac{n(n+1)}{2} \lfloor \frac{a}{c} \rfloor + (n+1)\lfloor \frac{b}{c} \rfloo
 $f(a,b,c,n)=nm-f(c,c-b-1,a,m-1)$ （证明复杂，略）
 
 ```c++
-ll floor_sum(ll a,ll b,ll c,ll n)
-{
+ll floor_sum(ll a,ll b,ll c,ll n) {
 	ll res=0;
 	if(a>=c) {
 		res+=n*(n+1)*(a/c)/2;
@@ -4773,7 +4776,7 @@ $$
 
 #### 凸壳优化DP
 
-![line](D:\Template\line.png)
+![slope](Assets/slope.png)
 
 下式$Y(j)=K(i)X(j)+B(i)+A(j)$当,$K(i)$存在单调性即可通过凸壳优化。
 若**$K$单调递增**，我们可以尾部通过单调队列思想，计算当前直线与上一条直线的交点判断上一条直线还有没有可能在某个区间成为答案,若当前直线的加入让上条直线不可能成为答案了，则上条直线出队。最后加入当前直线。
