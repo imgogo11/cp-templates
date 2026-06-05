@@ -6,7 +6,9 @@ TabWidth: 4
 UseTab: Never
 AccessModifierOffset: -2
 
-BreakBeforeBraces: Attach
+BreakBeforeBraces: Custom
+BraceWrapping:
+  BeforeElse: true
 AllowShortFunctionsOnASingleLine: All
 AllowShortIfStatementsOnASingleLine: true
 AllowShortLoopsOnASingleLine: true
@@ -24,7 +26,8 @@ PointerAlignment: Right
 ReferenceAlignment: Right
 
 ColumnLimit: 0
+MaxEmptyLinesToKeep: 10
 IndentCaseLabels: true
 
-SortIncludes: false
+SortIncludes: true
 FixNamespaceComments: true
