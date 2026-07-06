@@ -32,11 +32,11 @@ int query(int lp, int rp, int l, int r, int k) {  // 求区间第k大
     else
         return query(tr[lp].r, tr[rp].r, mid + 1, r, k - num);
 }
-ll query(int lp, int rp, int l, int r, int x1, int x2) {  // 求区间[l,r]中x1<=X<=x2的数和
+int64_t query(int lp, int rp, int l, int r, int x1, int x2) {  // 求区间[l,r]中x1<=X<=x2的数和
     if (x1 <= l && r <= x2)
         return tr[rp].val - tr[lp].val;
     int mid = (l + r) >> 1;
-    ll ans = 0;
+    int64_t ans = 0;
     if (x1 <= mid)
         ans += query(tr[lp].l, tr[rp].l, l, mid, x1, x2);
     if (x2 > mid)

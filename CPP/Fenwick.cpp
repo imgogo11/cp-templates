@@ -1,38 +1,36 @@
+template <typename T>
 struct Fenwick {
-    vector<ll> Fbit;
-    int n;
-    Fenwick() {}
-    Fenwick(int n) { init(n); }
+    int n_;
+    std::vector<T> a;
+    Fenwick(int n = 0) {
+        init(n);
+    }
     void init(int n) {
-        Fbit.assign(n + 5, 0);
-        this->n = n + 1;
+        n_ = n;
+        a.assign(n, T{});
     }
-    int lowbit(int x) { return x & (-x); }
-    void add(int k1, ll k2) {
-        for (int i = k1 + 1; i <= n; i += lowbit(i))
-            Fbit[i] += k2;
+    void add(int x, const T &v) {
+        for (int i = x + 1; i <= n_; i += i & -i) {
+            a[i - 1] = a[i - 1] + v;
+        }
     }
-    ll presum(int z) {
-        ll res = 0;
-        for (int i = z + 1; i >= 1; i -= lowbit(i))
-            res += Fbit[i];
-        return res;
+    T sum(int x) {  // [0,x)
+        T ans{};
+        for (int i = x; i > 0; i -= i & -i) {
+            ans = ans + a[i - 1];
+        }
+        return ans;
     }
-    ll sufsum(int z) {
-        if (z >= n) return 0;
-        return presum(n - 1) - presum(z - 1);
+    T rangeSum(int l, int r) {  // [l,r)
+        return sum(r) - sum(l);
     }
-    ll rangesum(int l, int r) {
-        if (l > r) return 0;
-        return presum(r) - presum(l - 1);
-    }
-    int select(const ll &k) {
+    int select(const T &k) {  // 返回最大的 x，使得 sum[0,x) <= k
         int x = 0;
-        ll cur = 0;
-        for (int i = (1 << __lg(n)); i; i /= 2) {
-            if (x + i <= n && cur + Fbit[x + i] < k) {
+        T cur{};
+        for (int i = 1 << std::__lg(n_); i; i /= 2) {
+            if (x + i <= n_ && cur + a[x + i - 1] <= k) {
                 x += i;
-                cur = cur + Fbit[x];
+                cur = cur + a[x - 1];
             }
         }
         return x;
